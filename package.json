@@ -1,0 +1,24 @@
+{
+  "name": "easy-compare",
+  "version": "0.0.1",
+  "description": "Compare values like mongodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/torto/easy-compare.git"
+  },
+  "keywords": [
+    "mongodb",
+    "compare",
+    "json"
+  ],
+  "author": "Guilherme Berghuaser - @torto",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/torto/easy-compare/issues"
+  },
+  "homepage": "https://github.com/torto/easy-compare#readme"
+}
