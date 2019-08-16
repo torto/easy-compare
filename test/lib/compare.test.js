@@ -2,7 +2,7 @@
 
 const expect = require('chai').expect
 
-const compare = require('..')
+const compare = require('../../lib/compare')
 
 describe('Test case to Compare Fields', () => {
   describe('Compare METHOD', () => {

@@ -62,27 +62,3 @@ Ps: `operator` accept only one field in the object, if you need to use more than
 | -- | -- |
 | `$and` | Operator to check more than one value with the **AND** logic|
 | `$or` | Operator to check more than one value with the **OR** logic|
-
-### isEqual(value, otherValue) ###
-
-A simple method to verify is the both values are the same
-
-### isNotEqual(value, otherValue) ###
-
-A simple method to verify is the both values are **not** the same
-
-### isGreaterThan(value, otherValue) ###
-
-A simple method to verify is the `value` is greater than the `otherValue`
-
-### isGreaterThanOrEqual(value, otherValue) ###
-
-A simple method to verify is the `value` is greater than the `otherValue` or the both values are the same
-
-### isLessThan(value, otherValue) ###
-
-A simple method to verify is the `value` is less than the `otherValue`
-
-### isGreaterThanOrEqual(value, otherValue) ###
-
-A simple method to verify is the `value` is less than the `otherValue` or the both values are the same.
