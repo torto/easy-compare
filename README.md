@@ -1,4 +1,4 @@
-# Easy-compare [![Build Status](https://travis-ci.org/torto/easy-compare.svg?branch=master)](https://travis-ci.org/torto/easy-compare)#
+# Easy-compare [![Build Status](https://travis-ci.org/torto/easy-compare.svg?branch=master)](https://travis-ci.org/torto/easy-compare) #
 
 This library is a way to execute comparison with a JSON pre-defined. It is using the same pattern of Mongodb operators.
 
