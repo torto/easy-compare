@@ -1,1 +1,0 @@
-{"processes":{"67337f27-0d23-484e-a570-94ab473ed090":{"parent":null,"children":["bc01f497-b4e0-42f0-916e-9a3ef16ac8f8"]},"bc01f497-b4e0-42f0-916e-9a3ef16ac8f8":{"parent":"67337f27-0d23-484e-a570-94ab473ed090","children":[]}},"files":{"/home/torto/projects/easy-compare/lib/compare.js":["bc01f497-b4e0-42f0-916e-9a3ef16ac8f8"]},"externalIds":{}}
