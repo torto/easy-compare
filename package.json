@@ -8,7 +8,7 @@
     "lint": "npx eslint . --ignore-pattern node_modules/ --ignore-pattern test/coverage",
     "lint:fix": "npm run lint -- --fix",
     "test": "NODE_ENV=test NODE_PATH=./ mocha \"./{,!(node_modules)/**/}*.test.js\" --colors --reporter spec",
-    "coverage": "nyc yarn test"
+    "coverage": "nyc npm test"
   },
   "repository": {
     "type": "git",
