@@ -11,10 +11,10 @@ describe('Test case to Compare Fields', () => {
         expect(() => compare.compare(20)).to.throw(/You need to insert an operator/)
       })
       it('Compare with options not correct', () => {
-        expect(() => compare.compare(20, { $eu: 10 })).to.throw(/The operator \$eu is incorrect. Valid operator: \$eq, \$ne, \$gt, \$gte, \$lt, \$lte, \$and, \$or/)
+        expect(() => compare.compare(20, { $eu: 10 })).to.throw(/The operator \$eu is incorrect. Valid operator: \$eq, \$ne, \$gt, \$gte, \$lt, \$lte, \$in, \$nin, \$size, \$nsize, \$regex, \$nregex, \$and, \$or, \$all/)
       })
       it('Compare with some options not correct and other correct', () => {
-        expect(() => compare.compare(20, { $and: { $eq: 20, other: 10 } })).to.throw(/The operator other is incorrect. Valid operator: \$eq, \$ne, \$gt, \$gte, \$lt, \$lte, \$and, \$or/)
+        expect(() => compare.compare(20, { $and: { $eq: 20, other: 10 } })).to.throw(/The operator other is incorrect. Valid operator: \$eq, \$ne, \$gt, \$gte, \$lt, \$lte, \$in, \$nin, \$size, \$nsize, \$regex, \$nregex, \$and, \$or, \$all/)
       })
     })
 
@@ -73,9 +73,76 @@ describe('Test case to Compare Fields', () => {
           expect(compare.compare(20, { $lte: 10 })).to.be.false
         })
       })
+      describe('$in field', () => {
+        it('correct', () => {
+          expect(compare.compare([1, 2, 3], { $in: 2 })).to.be.true
+        })
+        it('wrong', () => {
+          expect(compare.compare([1, 2, 3], { $in: 4 })).to.be.false
+        })
+      })
+      describe('$in field', () => {
+        it('correct', () => {
+          expect(compare.compare([1, 2, 3], { $in: 2 })).to.be.true
+        })
+        it('wrong', () => {
+          expect(compare.compare([1, 2, 3], { $in: 4 })).to.be.false
+        })
+      })
+      describe('$nin field', () => {
+        it('correct', () => {
+          expect(compare.compare([1, 2, 3], { $nin: 4 })).to.be.true
+        })
+        it('wrong', () => {
+          expect(compare.compare([1, 2, 3], { $nin: 2 })).to.be.false
+        })
+      })
+      describe('$size field', () => {
+        it('correct', () => {
+          expect(compare.compare([1, 2, 3], { $size: 3 })).to.be.true
+        })
+        it('wrong', () => {
+          expect(compare.compare([1, 2, 3], { $size: 2 })).to.be.false
+        })
+      })
+      describe('$nsize field', () => {
+        it('correct', () => {
+          expect(compare.compare([1, 2, 3], { $nsize: 2 })).to.be.true
+        })
+        it('wrong', () => {
+          expect(compare.compare([1, 2, 3], { $nsize: 3 })).to.be.false
+        })
+      })
+      describe('$regex field', () => {
+        it('correct', () => {
+          expect(compare.compare('123', { $regex: '^[0-9]+' })).to.be.true
+        })
+        it('wrong', () => {
+          expect(compare.compare('asd', { $regex: '^[0-9]+' })).to.be.false
+        })
+      })
+      describe('$nregex field', () => {
+        it('correct', () => {
+          expect(compare.compare('asd', { $nregex: '^[0-9]+' })).to.be.true
+        })
+        it('wrong', () => {
+          expect(compare.compare('123', { $nregex: '^[0-9]+' })).to.be.false
+        })
+      })
     })
 
-    describe('Should compare with $and or $or fields', () => {
+    describe('Should compare with logical operators fields', () => {
+      describe('$all field', () => {
+        it('correct', () => {
+          expect(compare.compare(35, { $all: { $lte: 50, $gt: 20 } })).to.be.true
+        })
+        it('wrong greater than', () => {
+          expect(compare.compare(100, { $all: { $lte: 50, $gt: 20 } })).to.be.false
+        })
+        it('wrong less than', () => {
+          expect(compare.compare(10, { $all: { $lte: 50, $gt: 20 } })).to.be.false
+        })
+      })
       describe('$and field', () => {
         it('correct', () => {
           expect(compare.compare(35, { $and: { $lte: 50, $gt: 20 } })).to.be.true
@@ -258,182 +325,77 @@ describe('Test case to Compare Fields', () => {
     })
   })
 
-  describe('checkOperatorsAndExecute', () => {
-    describe('$eq', () => {
-      it('correct', () => {
-        expect(compare.checkOperatorsAndExecute(20, 20, '$eq')).to.be.true
-      })
-      it('wrong', () => {
-        expect(compare.checkOperatorsAndExecute(20, 21, '$eq')).to.be.false
-      })
-    })
-    describe('$ne', () => {
-      it('correct', () => {
-        expect(compare.checkOperatorsAndExecute(20, 21, '$ne')).to.be.true
-      })
-      it('wrong', () => {
-        expect(compare.checkOperatorsAndExecute(20, 20, '$ne')).to.be.false
-      })
-    })
-    describe('$gt', () => {
-      it('correct', () => {
-        expect(compare.checkOperatorsAndExecute(21, 20, '$gt')).to.be.true
-      })
-      it('wrong', () => {
-        expect(compare.checkOperatorsAndExecute(20, 21, '$gt')).to.be.false
-      })
-    })
-    describe('$gte', () => {
-      it('correct', () => {
-        expect(compare.checkOperatorsAndExecute(21, 20, '$gte')).to.be.true
-      })
-      it('correct equal', () => {
-        expect(compare.checkOperatorsAndExecute(20, 20, '$gte')).to.be.true
-      })
-      it('wrong', () => {
-        expect(compare.checkOperatorsAndExecute(20, 21, '$gte')).to.be.false
-      })
-    })
-    describe('$lt', () => {
-      it('correct', () => {
-        expect(compare.checkOperatorsAndExecute(20, 21, '$lt')).to.be.true
-      })
-      it('wrong', () => {
-        expect(compare.checkOperatorsAndExecute(21, 20, '$lt')).to.be.false
-      })
-    })
-    describe('$lte', () => {
-      it('correct', () => {
-        expect(compare.checkOperatorsAndExecute(20, 21, '$lte')).to.be.true
-      })
-      it('correct equal', () => {
-        expect(compare.checkOperatorsAndExecute(20, 20, '$lte')).to.be.true
-      })
-      it('wrong', () => {
-        expect(compare.checkOperatorsAndExecute(21, 20, '$lte')).to.be.false
-      })
-    })
-    describe('Different value', () => {
-      it('correct', () => {
-        expect(compare.checkOperatorsAndExecute(20, 21, '$test')).to.be.false
-      })
-    })
-  })
+  // describe('checkOperatorsAndExecute', () => {
+  //   describe('$eq', () => {
+  //     it('correct', () => {
+  //       expect(compare.checkOperatorsAndExecute(20, 20, '$eq')).to.be.true
+  //     })
+  //     it('wrong', () => {
+  //       expect(compare.checkOperatorsAndExecute(20, 21, '$eq')).to.be.false
+  //     })
+  //   })
+  //   describe('$ne', () => {
+  //     it('correct', () => {
+  //       expect(compare.checkOperatorsAndExecute(20, 21, '$ne')).to.be.true
+  //     })
+  //     it('wrong', () => {
+  //       expect(compare.checkOperatorsAndExecute(20, 20, '$ne')).to.be.false
+  //     })
+  //   })
+  //   describe('$gt', () => {
+  //     it('correct', () => {
+  //       expect(compare.checkOperatorsAndExecute(21, 20, '$gt')).to.be.true
+  //     })
+  //     it('wrong', () => {
+  //       expect(compare.checkOperatorsAndExecute(20, 21, '$gt')).to.be.false
+  //     })
+  //   })
+  //   describe('$gte', () => {
+  //     it('correct', () => {
+  //       expect(compare.checkOperatorsAndExecute(21, 20, '$gte')).to.be.true
+  //     })
+  //     it('correct equal', () => {
+  //       expect(compare.checkOperatorsAndExecute(20, 20, '$gte')).to.be.true
+  //     })
+  //     it('wrong', () => {
+  //       expect(compare.checkOperatorsAndExecute(20, 21, '$gte')).to.be.false
+  //     })
+  //   })
+  //   describe('$lt', () => {
+  //     it('correct', () => {
+  //       expect(compare.checkOperatorsAndExecute(20, 21, '$lt')).to.be.true
+  //     })
+  //     it('wrong', () => {
+  //       expect(compare.checkOperatorsAndExecute(21, 20, '$lt')).to.be.false
+  //     })
+  //   })
+  //   describe('$lte', () => {
+  //     it('correct', () => {
+  //       expect(compare.checkOperatorsAndExecute(20, 21, '$lte')).to.be.true
+  //     })
+  //     it('correct equal', () => {
+  //       expect(compare.checkOperatorsAndExecute(20, 20, '$lte')).to.be.true
+  //     })
+  //     it('wrong', () => {
+  //       expect(compare.checkOperatorsAndExecute(21, 20, '$lte')).to.be.false
+  //     })
+  //   })
+  //   describe('$in', () => {
+  //     it('correct', () => {
+  //       expect(compare.checkOperatorsAndExecute([1, 2, 3], 1, '$in')).to.be.true
+  //     })
+  //     it('wrong', () => {
+  //       expect(compare.checkOperatorsAndExecute([1, 2, 3], 4, '$in')).to.be.false
+  //     })
+  //   })
+  //   describe('$nin', () => {
+  //     it('correct', () => {
+  //       expect(compare.checkOperatorsAndExecute([1, 2, 3], 4, '$nin')).to.be.true
+  //     })
+  //     it('wrong', () => {
+  //       expect(compare.checkOperatorsAndExecute([1, 2, 3], 2, '$nin')).to.be.false
+  //     })
+  //   })
 
-  describe('Individual methods', () => {
-    describe('isEqual method', () => {
-      it('number correct', () => {
-        expect(compare.isEqual(20, 20)).to.be.true
-      })
-      it('number wrong', () => {
-        expect(compare.isEqual(20, 10)).to.be.false
-      })
-      it('string correct', () => {
-        expect(compare.isEqual('test', 'test')).to.be.true
-      })
-      it('string wrong', () => {
-        expect(compare.isEqual('test', 'other')).to.be.false
-      })
-      it('different type', () => {
-        expect(compare.isEqual(20, 'test')).to.be.false
-      })
-    })
-    describe('isNotEqual method', () => {
-      it('number correct', () => {
-        expect(compare.isNotEqual(21, 20)).to.be.true
-      })
-      it('number wrong', () => {
-        expect(compare.isNotEqual(20, 20)).to.be.false
-      })
-      it('string correct', () => {
-        expect(compare.isNotEqual('test', 'other')).to.be.true
-      })
-      it('string wrong', () => {
-        expect(compare.isNotEqual('test', 'test')).to.be.false
-      })
-      it('different type', () => {
-        expect(compare.isNotEqual(20, 'a')).to.be.true
-      })
-    })
-    describe('isGreaterThan method', () => {
-      it('number correct', () => {
-        expect(compare.isGreaterThan(21, 20)).to.be.true
-      })
-      it('number wrong', () => {
-        expect(compare.isGreaterThan(20, 25)).to.be.false
-      })
-      it('string correct', () => {
-        expect(compare.isGreaterThan('b', 'a')).to.be.true
-      })
-      it('string wrong', () => {
-        expect(compare.isGreaterThan('a', 'b')).to.be.false
-      })
-      it('different type', () => {
-        expect(compare.isGreaterThan(1, 'a')).to.be.false
-      })
-    })
-    describe('isGreaterThanOrEqual method', () => {
-      it('number greater than', () => {
-        expect(compare.isGreaterThanOrEqual(21, 20)).to.be.true
-      })
-      it('number equal', () => {
-        expect(compare.isGreaterThanOrEqual(20, 20)).to.be.true
-      })
-      it('number less than', () => {
-        expect(compare.isGreaterThanOrEqual(20, 25)).to.be.false
-      })
-      it('string greater than correct', () => {
-        expect(compare.isGreaterThanOrEqual('b', 'a')).to.be.true
-      })
-      it('string equal correct', () => {
-        expect(compare.isGreaterThanOrEqual('b', 'b')).to.be.true
-      })
-      it('string wrong', () => {
-        expect(compare.isGreaterThanOrEqual('a', 'b')).to.be.false
-      })
-      it('different type', () => {
-        expect(compare.isGreaterThanOrEqual(1, 'a')).to.be.false
-      })
-    })
-    describe('isLessThan method', () => {
-      it('number correct', () => {
-        expect(compare.isLessThan(20, 21)).to.be.true
-      })
-      it('number wrong', () => {
-        expect(compare.isLessThan(25, 20)).to.be.false
-      })
-      it('string correct', () => {
-        expect(compare.isLessThan('a', 'b')).to.be.true
-      })
-      it('string wrong', () => {
-        expect(compare.isLessThan('b', 'a')).to.be.false
-      })
-      it('different type', () => {
-        expect(compare.isLessThan(1, 'a')).to.be.false
-      })
-    })
-    describe('isLessThanOrEqual method', () => {
-      it('number less than', () => {
-        expect(compare.isLessThanOrEqual(20, 21)).to.be.true
-      })
-      it('number equal', () => {
-        expect(compare.isLessThanOrEqual(20, 20)).to.be.true
-      })
-      it('number greater than', () => {
-        expect(compare.isLessThanOrEqual(25, 20)).to.be.false
-      })
-      it('string less than correct', () => {
-        expect(compare.isLessThanOrEqual('a', 'b')).to.be.true
-      })
-      it('string equal correct', () => {
-        expect(compare.isLessThanOrEqual('b', 'b')).to.be.true
-      })
-      it('string wrong', () => {
-        expect(compare.isLessThanOrEqual('b', 'a')).to.be.false
-      })
-      it('different type', () => {
-        expect(compare.isLessThanOrEqual(1, 'a')).to.be.false
-      })
-    })
-  })
+  // })
 })
