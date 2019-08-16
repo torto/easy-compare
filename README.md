@@ -18,14 +18,15 @@ const easy = require('easy-compare');
 
 const operator = {
     $and: {
-        $lg: 20,
+        $lt: 20,
         $gt: 10
     }
 }
 
-easy.compare(15, operator) //true
-easy.compare(9, operator) //false
-easy.compare(30, operator) //false
+console.log(easy.compare(15, operator)); //true
+console.log(easy.compare(9, operator)); //false
+console.log(easy.compare(30, operator)); //false
+
 ```
 
 ## Methods ##
