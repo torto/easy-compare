@@ -69,6 +69,7 @@ Ps: `operator` accept only one field in the object, if you need to use more than
 | `$and` | Operator to check more than one value with the **AND** logic|
 | `$or` | Operator to check more than one value with the **OR** logic|
 | `$all` | Operator execute the same the all (just a alias)|
+| `$not` | Operator to check if all operator is false|
 
 ## Examples ##
 
@@ -169,5 +170,16 @@ console.log('$or -', 'Have to be false:', easy.compare('13', {
         $regex: '^[a-z]+',
         $gt: 100
     }
+}));
+
+//$not
+console.log('$not -', 'Have to be true:', compare.compare([35, 40, 50], { $not: { $in: 45 } }));
+console.log('$not -', 'Have to be false:', compare.compare([35, 40, 50], {
+  $not: {
+    $in: 35,
+    $and: {
+      $in: 40
+    }
+  }
 }));
 ```

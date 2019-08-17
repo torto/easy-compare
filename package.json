@@ -1,7 +1,7 @@
 {
   "name": "easy-compare",
-  "version": "0.0.6",
-  "description": "Compare values like mongodb",
+  "version": "0.0.7",
+  "description": "Compare values using opertaros like mongodb",
   "main": "index.js",
   "scripts": {
     "test": "npm test",
