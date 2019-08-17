@@ -4,13 +4,13 @@
   "description": "Compare values using opertaros like mongodb",
   "main": "index.js",
   "scripts": {
-    "test": "npm test",
+    "test": "NODE_ENV=test NODE_PATH=./ mocha \"./{,!(node_modules)/**/}*.test.js\" --colors --reporter spec",
     "test:watch": "NODE_ENV=test NODE_PATH=./ mocha -w \"./{,!(node_modules)/**/}*.test.js\" --colors --reporter spec",
     "test:debug": "NODE_ENV=test NODE_PATH=./ mocha debug -w \"./{,!(node_modules)/**/}*.test.js\" --colors --reporter spec",
     "lint": "npx eslint . --ignore-pattern node_modules/ --ignore-pattern test/coverage",
     "lint:fix": "npm run lint -- --fix",
-    "test": "NODE_ENV=test NODE_PATH=./ mocha \"./{,!(node_modules)/**/}*.test.js\" --colors --reporter spec",
-    "coverage": "nyc npm test"
+    "coverage": "nyc npm test",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
   "homepage": "https://github.com/torto/easy-compare#readme",
   "devDependencies": {
     "chai": "^4.2.0",
+    "coveralls": "^3.0.6",
     "eslint": "^6.1.0",
     "eslint-config-standard": "^13.0.1",
     "eslint-plugin-chai-expect": "^2.0.1",

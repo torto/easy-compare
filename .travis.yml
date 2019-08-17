@@ -1,8 +1,11 @@
 language: node_js
 node_js:
-  - node
+- node
 email:
   on_failure: change
   on_success: never
 after_success:
-- npm run coverage
+- npm run coveralls
+env:
+  global:
+    secure: JnpAyYdRdrAvt7zl/sd8e3jID6ubI0suDK2j4vzDPJflPI0mk8CnmYTS6Mkl/YuSEEH9zRGr4ecSlYt3jMWeDkiJhDHF/sBvvtNfv+Wk1CAat/S3KvbwyCfRFQrnJB7qonYxupim7pAmIrQJFYXkPJj7GQ103Gtpm6wkLdItPDZRG2tbFCcxdI0f4nnVc9n/rUdA9r82n/QQhEAhARCmDxYyEmPnRGnRQf7Y2Wxs1qqKzosV63CsDkghcM36zAclOg5zpH6GQlSPv/yIN4LY10SZAuuEenA6unr2Sxnmzv9Rq6B6rn39gAOTkqKYgraa60+3Bd3B8xf8tvHkf6uCoYakTJoaWsGna80Dtlm/9lW2/m8iqXvCAT7PNAV8VxB5LLQFuftLIRpjdnE+8ZzEDChVSj7WdBwo3cTxGG1BSuqcrf7sgzaQzW+eFoFX3KvHNghe+XGS4x/FOsHYHAMK4UO9nU/4ryhk0S6awLSXxP5fTrqhFL1Ew35FqO+VV2HB/CPNkAVUuZVXzdeVz0diCKj3FRuXjYouWdJjkxkczCmAb3u8pjAvv6HhdUSMSOMT5FMGqZoGgDCn7tc8LJaMy70x2hOjM0fcuVl/dvREzlZYLNZoenZWQyLGTLKsn6aW0GHF3if8VyBuVJ34ovno43U/Es3haXATW2jdP88shFw=
