@@ -1,11 +1,12 @@
 {
   "name": "easy-compare",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Compare values like mongodb",
   "main": "index.js",
   "scripts": {
     "test": "npm test",
     "test:watch": "NODE_ENV=test NODE_PATH=./ mocha -w \"./{,!(node_modules)/**/}*.test.js\" --colors --reporter spec",
+    "test:debug": "NODE_ENV=test NODE_PATH=./ mocha debug -w \"./{,!(node_modules)/**/}*.test.js\" --colors --reporter spec",
     "lint": "npx eslint . --ignore-pattern node_modules/ --ignore-pattern test/coverage",
     "lint:fix": "npm run lint -- --fix",
     "test": "NODE_ENV=test NODE_PATH=./ mocha \"./{,!(node_modules)/**/}*.test.js\" --colors --reporter spec",

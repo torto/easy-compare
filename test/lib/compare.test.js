@@ -288,7 +288,7 @@ describe('Test case to Compare Fields', () => {
             }
           })).to.be.true
         })
-        it('correct but the first value is wrong - postion $and', () => {
+        it('correct but the second value is wrong - postion $and', () => {
           expect(compare.compare(35, {
             $or: {
               $and: {
@@ -318,6 +318,22 @@ describe('Test case to Compare Fields', () => {
                 $gt: 10
               },
               $lte: 20
+            }
+          })).to.be.false
+        })
+      })
+
+      describe('$not field', () => {
+        it('correct', () => {
+          expect(compare.compare([35, 40, 50], { $not: { $in: 45 } })).to.be.true
+        })
+        it('wrong', () => {
+          expect(compare.compare([35, 40, 50], {
+            $not: {
+              $in: 35,
+              $and: {
+                $in: 40
+              }
             }
           })).to.be.false
         })
