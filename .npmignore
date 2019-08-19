@@ -9,3 +9,4 @@ webpack.*.js
 .travis.yml
 lib/
 .nyc_output/
+index.js
