@@ -1,0 +1,11 @@
+
+**/.*
+coverage/
+node_modules/
+test/
+webpack.*.js
+.coveralls.yml
+.eslintrc.js
+.travis.yml
+lib/
+.nyc_output/
