@@ -2,7 +2,7 @@
   "name": "easy-compare",
   "version": "0.0.8",
   "description": "Compare values using opertaros like mongodb",
-  "main": "dist/bundle.js",
+  "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test NODE_PATH=./ mocha \"./{,!(node_modules)/**/}*.test.js\" --colors --reporter spec",
     "test:watch": "NODE_ENV=test NODE_PATH=./ mocha -w \"./{,!(node_modules)/**/}*.test.js\" --colors --reporter spec",
