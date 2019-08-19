@@ -10,7 +10,9 @@ module.exports = {
     filename: 'index.js'
   },
   optimization: {
-    minimizer: [new UglifyJsPlugin()]
+    minimizer: [new UglifyJsPlugin({
+      sourceMap: true
+    })]
   },
   module: {
     rules: [
