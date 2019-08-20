@@ -28,9 +28,6 @@
   },
   "homepage": "https://github.com/torto/easy-compare#readme",
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "babel-loader": "^8.0.6",
     "chai": "^4.2.0",
     "coveralls": "^3.0.6",
     "eslint": "^6.1.0",
@@ -42,11 +39,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "mocha": "^6.2.0",
-    "nyc": "^14.1.1",
-    "terser-webpack-plugin": "^1.4.1",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.7"
+    "nyc": "^14.1.1"
   },
   "nyc": {
     "check-coverage": true,
