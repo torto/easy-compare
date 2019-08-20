@@ -10,7 +10,7 @@
     "lint": "npx eslint . --ignore-pattern node_modules/ --ignore-pattern test/coverage",
     "lint:fix": "npm run lint -- --fix",
     "coverage": "nyc npm test",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "repository": {
     "type": "git",
