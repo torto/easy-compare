@@ -1,4 +1,4 @@
-# Easy-compare [![Build Status](https://travis-ci.org/torto/easy-compare.svg?branch=master)](https://travis-ci.org/torto/easy-compare) [![Coverage Status](https://coveralls.io/repos/github/torto/easy-compare/badge.svg?branch=master)](https://coveralls.io/github/torto/easy-compare?branch=master) #
+# Easy-compare [![Build Status](https://travis-ci.org/torto/easy-compare.svg?branch=master)](https://travis-ci.org/torto/easy-compare) [![Coverage Status](https://coveralls.io/repos/github/torto/easy-compare/badge.svg?branch=master)](https://coveralls.io/github/torto/easy-compare?branch=master) [![install size](https://packagephobia.now.sh/badge?p=easy-compare)](https://packagephobia.now.sh/result?p=easy-compare) #
 
 This library is a way to execute comparison with a JSON pre-defined. It is using the same pattern of Mongodb operators.
 

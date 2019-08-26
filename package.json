@@ -1,6 +1,6 @@
 {
   "name": "easy-compare",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Compare values using opertaros like mongodb",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,11 @@
   "keywords": [
     "mongodb",
     "compare",
-    "json"
+    "json",
+    "comparator",
+    "function",
+    "operator",
+    "values"
   ],
   "author": "Guilherme Berghuaser - @torto",
   "license": "GPL-3.0",
