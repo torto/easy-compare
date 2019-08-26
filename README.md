@@ -173,8 +173,8 @@ console.log('$or -', 'Have to be false:', easy.compare('13', {
 }));
 
 //$not
-console.log('$not -', 'Have to be true:', compare.compare([35, 40, 50], { $not: { $in: 45 } }));
-console.log('$not -', 'Have to be false:', compare.compare([35, 40, 50], {
+console.log('$not -', 'Have to be true:', easy.compare([35, 40, 50], { $not: { $in: 45 } }));
+console.log('$not -', 'Have to be false:', easy.compare([35, 40, 50], {
   $not: {
     $in: 35,
     $and: {
