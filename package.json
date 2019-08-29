@@ -1,6 +1,6 @@
 {
   "name": "easy-compare",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Compare values using opertaros like mongodb",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,8 @@
     "lint": "npx eslint . --ignore-pattern node_modules/ --ignore-pattern test/coverage",
     "lint:fix": "npm run lint -- --fix",
     "coverage": "nyc npm test",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "update:packages": "rm -rf node_modules && npm update --save-dev && npm update --save"
   },
   "repository": {
     "type": "git",
